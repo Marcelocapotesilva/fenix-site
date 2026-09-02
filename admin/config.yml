@@ -1,0 +1,35 @@
+# ============================================================
+#  BLOG ADMIN CONFIG  (Sveltia / Decap CMS — GitHub backend)
+#  Edit the 3 lines marked >>> before publishing.
+# ============================================================
+backend:
+  name: github
+  repo: SEU-USUARIO/SEU-REPOSITORIO      # >>> ex: marcelocapote/fenix-site
+  branch: main                            # >>> troque para "master" se for o caso
+  base_url: https://SEU-LOGIN.workers.dev # >>> URL do servidor de login (Cloudflare Worker)
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+locale: "en"
+
+collections:
+  - name: "journal"
+    label: "Journal"
+    files:
+      - name: "posts"
+        label: "All journal entries"
+        file: "content/posts.json"
+        format: "json"
+        description: "Add, edit, reorder or delete your posts. Newest first."
+        fields:
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            label_singular: "Post"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Date", name: "date", widget: "string", hint: "Shown above the title, e.g. 20 AUGUST 2026" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "sub", widget: "string", required: false }
+              - { label: "Cover image", name: "img", widget: "image", required: false }
+              - { label: "Body", name: "body", widget: "text", hint: "Leave a blank line between paragraphs." }
