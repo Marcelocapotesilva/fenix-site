@@ -1,0 +1,20 @@
+content:
+  - name: posts
+    label: Journal
+    type: file
+    path: content/posts.json
+    fields:
+      - name: posts
+        label: Posts
+        type: object
+        list: true
+        fields:
+          - { name: date, label: Date, type: string }
+          - { name: title, label: Title, type: string }
+          - { name: sub, label: Subtitle, type: string }
+          - { name: img, label: Cover image, type: image }
+          - { name: body, label: Body, type: text }
+
+media:
+  input: images/uploads
+  output: /images/uploads
