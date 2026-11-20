@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import { ContactForm } from './ContactForm';
 import { DefList, PageHero } from '@/components/ui';
+import { SITE } from '@/content/site';
 
 export const metadata: Metadata = { title: 'Start a Project — Contato comercial', description: 'Formulário institucional segmentado: o que você deseja desenvolver?' };
 
@@ -18,11 +19,11 @@ export default function ContactPage() {
           </div>
           <div className="col-3 col-start-10 stack-lg">
             <DefList rows={[
-              { label: 'E-mail comercial', pending: 'A confirmar' },
+              { label: 'E-mail comercial', value: <a href={`mailto:${SITE.email}`} className="text-btn" style={{ textTransform: 'none', letterSpacing: 0, fontSize: 'inherit' }}>{SITE.email}</a> },
               { label: 'Telefone', pending: 'A confirmar' },
               { label: 'Endereço', pending: 'A confirmar' },
             ]} />
-            <p className="caption muted">Canais oficiais serão publicados após verificação.</p>
+            <p className="caption muted">Telefone e endereço serão publicados após verificação.</p>
           </div>
         </div>
       </section>

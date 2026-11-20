@@ -62,7 +62,7 @@ Nada foi inventado: nenhuma maison, cliente, contrato, SKU, preço, resultado, e
 | Categoria, tags e referências do artigo do Journal | Classificação editorial adicionada; links das fontes a incluir. |
 | Biografia do fundador | Extraída do artigo publicado; retrato pendente. Demais integrantes: pendente. |
 | Mercados | Status de Europa/Brasil/América Latina e existência de operação local a confirmar juridicamente. |
-| Contatos, razão social, sede, redes sociais | Pendentes de verificação (marcados no rodapé e na página de contato). |
+| Contatos | E-mail comercial publicado (marcelo@fenixfragrancesholding.uk). Telefone, razão social, sede e redes sociais pendentes. |
 | Textos legais (Privacidade, Termos, Cookies) | Estrutura LGPD pronta; texto final do jurídico pendente. |
 | Versões EN/ES do conteúdo editorial | Interface traduzida; conteúdo em tradução. |
 | “The 3 Islands®” | Confirmar registro da marca antes de manter o ®. |

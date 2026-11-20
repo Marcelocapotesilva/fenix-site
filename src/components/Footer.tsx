@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FOOTER_GROUPS } from '@/content/site';
+import { FOOTER_GROUPS, SITE } from '@/content/site';
 import { LogoFull } from './Logo';
 
 export function Footer() {
@@ -40,7 +40,8 @@ export function Footer() {
           <div className="col-4">
             <h2 className="eyebrow text-champagne mb-4">Contato comercial</h2>
             <p className="body-sm">Formulário institucional: <Link href="/contact/" className="text-btn">Start a Project</Link></p>
-            <p className="body-sm muted mt-2">E-mail, telefone e endereço oficiais: pendentes de confirmação.</p>
+            <p className="body-sm mt-2">E-mail: <a href={`mailto:${SITE.email}`} className="text-btn" style={{ textTransform: 'none', letterSpacing: 0, fontSize: 'inherit' }}>{SITE.email}</a></p>
+            <p className="body-sm muted mt-2">Telefone e endereço: pendentes de confirmação.</p>
           </div>
           <div className="col-4">
             <h2 className="eyebrow text-champagne mb-4">Informações institucionais</h2>
