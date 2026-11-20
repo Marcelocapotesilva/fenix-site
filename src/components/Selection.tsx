@@ -45,8 +45,7 @@ export function SelectionList() {
   if (!items.length)
     return (
       <div className="empty" role="status">
-        <p className="eyebrow">Lista vazia</p>
-        <p className="empty__title">Sua lista de interesse ainda não tem itens.</p>
+                <p className="empty__title">Sua lista de interesse ainda não tem itens.</p>
         <p>Adicione ingredientes, produtos ou oportunidades a partir do Portfolio. A lista fica salva apenas neste navegador.</p>
         <Link href="/portfolio/" className="link-arrow">Abrir o Portfolio →</Link>
       </div>

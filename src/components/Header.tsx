@@ -28,6 +28,16 @@ export function Header({ searchIndex }: { searchIndex: SearchDoc[] }) {
   const { t, locale } = useI18n();
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const isHome = pathname === '/';
+  const [pastHero, setPastHero] = useState(false);
+
+  useEffect(() => {
+    if (!isHome) return;
+    const onScroll = () => setPastHero(window.scrollY > window.innerHeight * 0.45);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [isHome]);
 
   useEffect(() => {
     setMenuOpen(false);
@@ -63,7 +73,7 @@ export function Header({ searchIndex }: { searchIndex: SearchDoc[] }) {
               <IconMenu /> {t('menu')}
             </button>
           </div>
-          <Link href="/" className="masthead__home masthead__brand" aria-label="FÊNIX — Fragrances Holding, página inicial">
+          <Link href="/" className={`masthead__home masthead__brand${isHome && !pastHero ? ' is-hidden' : ''}`} aria-label="FÊNIX — Fragrances Holding, página inicial" tabIndex={isHome && !pastHero ? -1 : undefined}>
             <LogoPlate />
           </Link>
           <div className="masthead__right">

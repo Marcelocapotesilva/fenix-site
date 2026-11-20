@@ -1,15 +1,18 @@
 import '@fontsource/cormorant-garamond/400.css';
 import '@fontsource/cormorant-garamond/500.css';
 import '@fontsource/cormorant-garamond/400-italic.css';
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/500.css';
-import '@fontsource/inter/600.css';
+import '@fontsource/cormorant-garamond/300.css';
+import '@fontsource/cormorant-garamond/300-italic.css';
+import '@fontsource/montserrat/400.css';
+import '@fontsource/montserrat/500.css';
+import '@fontsource/montserrat/600.css';
 import '@/styles/globals.css';
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { Providers } from '@/components/Providers';
+import { RevealObserver } from '@/components/Reveal';
 import { SelectionBar } from '@/components/Selection';
 import { SITE } from '@/content/site';
 import { buildSearchIndex } from '@/lib/search-index';
@@ -35,6 +38,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <main id="conteudo" tabIndex={-1}>{children}</main>
           <Footer />
           <SelectionBar />
+          <RevealObserver />
         </Providers>
       </body>
     </html>

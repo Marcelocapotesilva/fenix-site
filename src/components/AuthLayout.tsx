@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import { LogoFull } from './Logo';
+import { LogoPlate } from './Logo';
 
 export function AuthLayout({ eyebrow, title, intro, children, footer }: { eyebrow: string; title: string; intro?: ReactNode; children: ReactNode; footer?: ReactNode }) {
   return (
     <div className="auth-wrap">
       <div className="auth-wrap__brand">
-        <div style={{ maxWidth: 300 }}><LogoFull /></div>
+        <div style={{ maxWidth: 300 }}><LogoPlate fluid /></div>
         <div className="stack">
           <p className="eyebrow text-champagne">Partner Access</p>
           <p className="h2">Ambiente privado para maisons, distribuidores, boutiques e parceiros aprovados.</p>

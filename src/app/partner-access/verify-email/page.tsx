@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: 'Partner Access — Verifique seu e-m
 export default function Page() {
   return (
     <AuthLayout eyebrow="Cadastro · Etapa 2 de 3" title="Verifique seu e-mail." intro="Enviamos um link de confirmação para o endereço informado. O link expira em 24 horas.">
-      <ol className="steps" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+      <ol className="steps" style={{ gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>
         {['Solicitação enviada', 'E-mail verificado', 'Aprovação manual'].map((s, i) => (
           <li key={s} style={{ opacity: i <= 1 ? 1 : 0.5 }}><span className="eyebrow muted">0{i + 1}</span><p className="h4 mt-2">{s}</p></li>
         ))}

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { ArrowLink, Figure, PageHero, SectionHead } from '@/components/ui';
-import { LogoFull } from '@/components/Logo';
+import { LogoPlate } from '@/components/Logo';
 import { PEOPLE, POSITIONING_LINE, PRINCIPLES } from '@/content/site';
 
 export const metadata: Metadata = { title: 'About / People', description: 'Quem é a FÊNIX — Fragrances Holding: posicionamento, princípios e pessoas.' };
@@ -11,7 +11,7 @@ export default function AboutPage() {
       <PageHero crumbs={[{ label: 'About / People' }]} eyebrow="About / People" title={<>Presença não é <span className="italic">operação.</span></>} intro="A FÊNIX é uma plataforma de representação internacional, desenvolvimento e coordenação de mercados em perfumaria, beleza e luxo — que trabalha ao lado do ecossistema local, não acima dele nem em seu lugar." />
       <section className="section">
         <div className="container grid">
-          <div className="col-4"><LogoFull /></div>
+          <div className="col-4"><LogoPlate fluid /></div>
           <div className="col-7 col-start-6 stack-lg">
             <p className="statement">{POSITIONING_LINE}</p>
             <p className="measure muted">Atendemos dois públicos que precisam um do outro: marcas internacionais que desejam crescer em novos territórios e parceiros locais — distribuidores, importadores, especialistas regulatórios e varejistas — que desejam marcas e relações mais estruturadas. Distribuição cria presença; coordenação cria operação.</p>

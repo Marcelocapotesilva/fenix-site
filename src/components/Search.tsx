@@ -100,7 +100,7 @@ export function SearchOverlay({ index, onClose }: { index: SearchDoc[]; onClose:
           ) : results.length ? (
             <>
               <Results results={results} query={q} />
-              <p className="mt-6"><Link className="link-arrow" href={`/search/?q=${encodeURIComponent(q.trim())}`}>Ver todos os resultados →</Link></p>
+              <p className="mt-6"><Link className="link-arrow" href={`/search/?q=${encodeURIComponent(q.trim())}`}>Ver todos os resultados</Link></p>
             </>
           ) : (
             <p className="muted">{t('searchNoResults')} “{q}”.</p>

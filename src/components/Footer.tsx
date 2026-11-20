@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { FOOTER_GROUPS, SITE } from '@/content/site';
-import { LogoFull } from './Logo';
+import { LogoPlate } from './Logo';
 
 export function Footer() {
   return (
@@ -9,7 +9,7 @@ export function Footer() {
         <div className="grid">
           <div className="col-4">
             <Link href="/" className="footer__logo" style={{ display: 'block' }} aria-label="FÊNIX — Fragrances Holding, página inicial">
-              <LogoFull />
+              <LogoPlate fluid />
             </Link>
           </div>
           <div className="col-8">

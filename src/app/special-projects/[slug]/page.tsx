@@ -35,7 +35,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               <p className="eyebrow mb-4">Etapa de desenvolvimento</p>
               <ol className="row" style={{ gap: 0, borderTop: 'var(--rule)' }} aria-label="Estágios">
                 {STAGES.map((s, i) => (
-                  <li key={s} className="caption" style={{ flex: 1, padding: '10px 4px 0 0', borderTop: i <= current ? '2px solid var(--carvao)' : '2px solid transparent', marginTop: -1, opacity: i <= current ? 1 : 0.45 }} aria-current={i === current ? 'step' : undefined}>
+                  <li key={s} className="caption" style={{ flex: 1, padding: '10px 4px 0 0', borderTop: i <= current ? '1px solid var(--gold)' : '2px solid transparent', marginTop: -1, opacity: i <= current ? 1 : 0.45 }} aria-current={i === current ? 'step' : undefined}>
                     {STAGE_LABEL[s]}
                   </li>
                 ))}

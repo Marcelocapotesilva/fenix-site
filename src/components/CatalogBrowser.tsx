@@ -77,8 +77,7 @@ export function CatalogBrowser({ items }: { items: CatalogItem[] }) {
 
       {results.length === 0 ? (
         <div className="empty mt-8" role="status">
-          <p className="eyebrow">Sem resultados</p>
-          <p className="empty__title">Nenhum item corresponde a esta combinação.</p>
+                    <p className="empty__title">Nenhum item corresponde a esta combinação.</p>
           <p>Remova algum filtro ou registre o que você procura — usamos as solicitações para orientar o portfólio.</p>
           <div className="row">
             <button type="button" className="link-arrow" onClick={() => { setQ(''); setF(EMPTY); }}>Limpar filtros →</button>

@@ -2,30 +2,29 @@
 
 Fonte de verdade: `src/styles/tokens.css` (tokens) e `src/styles/globals.css` (componentes).
 
-## Princípios
-Broadsheet editorial: canvas marfim, tinta carvão, régua de 1px, **0px de raio**, sem sombras, sem gradientes decorativos. A hierarquia vem do contraste de escala tipográfica e das bandas tonais. A logo oficial sempre sobre `#000`.
+## Princípios — "Maison noir"
+Canvas preto `#000` (o mesmo campo da logo oficial, que se funde à página), tinta marfim, filetes dourados, 0px de raio, sem caixas nem sombras. Serifada leve em grandes tamanhos, itálicos dourados como acento, rótulos pequenos em Montserrat. Vermelho da fênix só como ponto (Grand Tour). Bordô em uma única banda (Start a Project).
 
 ## Cores
 | Token | Valor | Uso |
 |---|---|---|
-| `--carvao` | `#20201E` | Texto, réguas, botão ativo |
-| `--marfim` | `#F3F0E9` | Canvas |
-| `--banda` | `#E8E2D6` | Banda secundária (marfim × champanhe) |
-| `--champanhe` | `#B6A78F` | Rótulos sobre preto, detalhes |
-| `--bordo` | `#762433` | Foco, erros, pendências, banner de integração |
-| `--cinza-mineral` | `#8A887E` | Somente decorativo (não atinge AA em texto) |
-| `--ink-soft` | `#55534C` | Texto secundário (6,9:1 sobre marfim) |
-| `--logo-black` | `#000000` | Fundo da logo, masthead, rodapé, Grand Tour |
-| `--phoenix-red` | `#B81818` | Acento mínimo (marcador do Grand Tour) — amostrado da logo |
+| `--black` | `#000000` | Canvas, masthead, rodapé |
+| `--night` / `--night-2` | `#0C0B0A` / `#141210` | Bandas e superfícies elevadas |
+| `--ivory` | `#EDE7DC` | Texto |
+| `--ivory-2` | `#B4AC9E` | Texto secundário (9,6:1 sobre preto) |
+| `--ivory-3` | `#7D776C` | Metadados e decoração |
+| `--gold` | `#C9A96E` | Dourado da marca: filetes, itálicos, botões, foco |
+| `--bordo-deep` | `#4A1620` | Banda Start a Project, faixa de integração |
+| `--phoenix-red` | `#C41E1E` | Ponto do Grand Tour |
+| `--error` | `#E0827A` | Mensagens de erro |
 
 ## Tipografia
-- **Cormorant Garamond** 400/500/itálico — display e títulos.
-- **Inter** 400/500/600 — interface, corpo, rótulos.
-- Escala bimodal: leitura (11–22px) × anúncio (32–132px), com `clamp()` responsivo.
-- Rótulos (`.eyebrow`): 11px, caixa-alta, tracking 0,14em.
+- **Cormorant Garamond** 300/400 + itálico — display, títulos, citações (diretriz de marca).
+- **Montserrat** 400/500/600 — interface, corpo, rótulos (diretriz de marca).
+- Escala bimodal com `clamp()`; rótulos 10–11px, caixa-alta, tracking 0,22em.
 
 ## Espaçamento e grid
-Ritmo 4/8 (`--space-*`), seções `clamp(64px, 9vw, 128px)`, gutter `clamp(20px, 3.4vw, 48px)`, largura máxima 1440px, grid de 12 colunas. Breakpoints: 1100 / 900 / 720 / 600px.
+Ritmo 4/8, seções `clamp(80px, 11vw, 168px)`, gutter `clamp(22px, 4vw, 64px)`, largura máxima 1440px, grid de 12 colunas. Breakpoints 1100 / 900 / 720 / 600px.
 
 ## Componentes
 | Componente | Classe / arquivo |
@@ -56,4 +55,4 @@ Ritmo 4/8 (`--space-*`), seções `clamp(64px, 9vw, 128px)`, gutter `clamp(20px,
 O PNG oficial é servido idêntico ao recebido. `LogoPlate` enquadra a arte ocultando só o campo preto vazio (símbolo, nome e assinatura sempre completos, escala uniforme). `LogoFull` mostra o quadrado inteiro. Na altura de um cabeçalho, a assinatura “FRAGRANCES HOLDING” não fica legível sem alterar a arte; por isso ela aparece em tamanho legível no hero da homepage, no rodapé e no Partner Access. Recomendação: o brand designer produzir uma versão horizontal oficial para cabeçalhos.
 
 ## Movimento e acessibilidade
-Transições de 120–480ms só em opacidade, cor e transform; `prefers-reduced-motion` zera durações. Foco visível bordô em tudo; link “pular para o conteúdo”; validação no blur com limpeza imediata do erro; foco no primeiro campo inválido; `aria-live` nos estados de envio; alvos de toque ≥ 44px nos controles principais.
+Transições de 160–900ms só em opacidade, cor e transform; entrada suave das seções ao rolar (`Reveal.tsx`); `prefers-reduced-motion` zera durações. Foco visível bordô em tudo; link “pular para o conteúdo”; validação no blur com limpeza imediata do erro; foco no primeiro campo inválido; `aria-live` nos estados de envio; alvos de toque ≥ 44px nos controles principais.

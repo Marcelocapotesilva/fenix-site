@@ -185,7 +185,7 @@ export function RegisterForm() {
     <form className="form" noValidate onSubmit={onSubmit} aria-labelledby="reg-step-title">
       <ol className="full row" style={{ gap: 0, borderTop: 'var(--rule)' }} aria-label="Etapas do cadastro">
         {STEPS.map((s, i) => (
-          <li key={s} className="eyebrow" style={{ flex: 1, padding: '12px 0', borderTop: i <= step ? '2px solid var(--carvao)' : '2px solid transparent', marginTop: -1, opacity: i <= step ? 1 : 0.5 }} aria-current={i === step ? 'step' : undefined}>
+          <li key={s} className="eyebrow" style={{ flex: 1, padding: '12px 0', borderTop: i <= step ? '1px solid var(--gold)' : '2px solid transparent', marginTop: -1, opacity: i <= step ? 1 : 0.5 }} aria-current={i === step ? 'step' : undefined}>
             {String(i + 1).padStart(2, '0')} {s}
           </li>
         ))}

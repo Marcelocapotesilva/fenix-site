@@ -66,7 +66,7 @@ export function ArrowLink({ href, children, className = '' }: { href: string; ch
 }
 
 export function Figure({
-  image, ratio = '4x5', pendingLabel, showRights = true, priority = false, sizes = '(max-width: 900px) 100vw, 50vw',
+  image, ratio = '4x5', pendingLabel, showRights = false, priority = false, sizes = '(max-width: 900px) 100vw, 50vw',
 }: {
   image?: ImageRef; ratio?: '4x5' | '3x2' | '16x9' | '1x1' | 'tall'; pendingLabel?: string;
   showRights?: boolean; priority?: boolean; sizes?: string;
@@ -74,8 +74,8 @@ export function Figure({
   if (!image) {
     return (
       <figure className="figure">
-        <div className={`media media--${ratio} media-pending`} role="img" aria-label={`Imagem pendente: ${pendingLabel || 'fotografia oficial'}`}>
-          <span className="media-pending__label eyebrow">Imagem pendente · {pendingLabel || 'fotografia oficial autorizada'}</span>
+        <div className={`media media--${ratio} media-pending`} role="img" aria-label={`Fotografia em produção: ${pendingLabel || 'imagem oficial'}`}>
+          <span className="media-pending__label">Fotografia em produção</span>
         </div>
       </figure>
     );
@@ -117,10 +117,10 @@ export function PendingBadge({ children = 'Pendente' }: { children?: ReactNode }
   return <span className="status status--pending">{children}</span>;
 }
 
-export function EmptyState({ title, children, action }: { title: string; children?: ReactNode; action?: ReactNode }) {
+export function EmptyState({ title, children, action, label }: { title: string; children?: ReactNode; action?: ReactNode; label?: string }) {
   return (
     <div className="empty" role="status">
-      <p className="eyebrow">Sem publicações</p>
+      {label && <p className="eyebrow">{label}</p>}
       <p className="empty__title">{title}</p>
       {children && <div>{children}</div>}
       {action}
