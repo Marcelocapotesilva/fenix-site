@@ -1,5 +1,6 @@
 export const SITE = {
   email: 'marcelo@fenixfragrancesholding.uk',
+  instagram: 'https://www.instagram.com/fenixfragrancesholding/',
   name: 'FÊNIX — Fragrances Holding',
   shortName: 'FÊNIX',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://fenixfragrancesholding.uk',

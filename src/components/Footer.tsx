@@ -49,7 +49,7 @@ export function Footer() {
           </div>
           <div className="col-4">
             <h2 className="eyebrow text-champagne mb-4">Redes sociais</h2>
-            <p className="body-sm muted">Perfis oficiais autorizados: pendentes de confirmação.</p>
+            <p className="body-sm"><a href={SITE.instagram} target="_blank" rel="noopener noreferrer" className="text-btn" style={{ textTransform: 'none', letterSpacing: 0, fontSize: 'inherit' }}>Instagram · @fenixfragrancesholding</a></p>
           </div>
         </div>
 
