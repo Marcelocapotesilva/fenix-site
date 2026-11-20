@@ -298,7 +298,7 @@ export function RequestForm({
       </div>
 
       <div className="full form-actions">
-        <button type="submit" className={`btn ${tone === 'ink' ? 'btn--light' : ''}`} disabled={state === 'submitting'} aria-busy={state === 'submitting'}>
+        <button type="submit" className="btn btn--primary" disabled={state === 'submitting'} aria-busy={state === 'submitting'}>
           {state === 'submitting' ? (<><span className="spinner" aria-hidden="true" /> {t('sending')}</>) : (submitLabel || t('submit'))}
         </button>
         {!FORMS_ENDPOINT && <span className="caption muted">Integração de envio pendente — nenhum dado será transmitido.</span>}

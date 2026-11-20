@@ -1,106 +1,138 @@
 import Link from 'next/link';
 import { LogoPlate } from '@/components/Logo';
 import { RequestForm } from '@/components/RequestForm';
-import { ArrowLink, IndexList, SectionHead, StageBadge } from '@/components/ui';
+import { ArrowLink, SectionHead, StageBadge } from '@/components/ui';
 import { EXPERTISE } from '@/content/expertise';
 import { GRAND_TOUR_ENTRIES } from '@/content/grand-tour';
 import { IMAGES } from '@/content/images';
 import { JOURNEYS } from '@/content/journeys';
 import { MARKETS } from '@/content/markets';
-import { APPROACH, POSITIONING_LINE } from '@/content/site';
+import { APPROACH, POSITIONING_LINE, PRINCIPLES, SITE } from '@/content/site';
 import { getPosts, getPublicCatalog, getPublicMaisons, getPublicProjects } from '@/lib/cms';
 import { formatDatePt } from '@/lib/text';
 import type { ImageRef } from '@/lib/types';
 import { AVAILABILITY_LABEL } from '@/lib/types';
 
-function Visual({ image, word, ratio = '4x5' }: { image?: ImageRef; word: string; ratio?: '4x5' | '3x2' }) {
-  return image ? (
-    <div className={`media media--${ratio}`}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={image.srcSm || image.src} srcSet={image.srcSm ? `${image.srcSm} 800w, ${image.src} 1600w` : undefined} sizes="(max-width: 900px) 100vw, 33vw" alt={image.alt} loading="lazy" decoding="async" />
-    </div>
-  ) : (
-    <div className={`media media--${ratio} plate`} aria-hidden="true"><span className="plate__word">{word}</span></div>
+function Img({ image, sizes = '(max-width: 900px) 100vw, 33vw', eager = false }: { image: ImageRef; sizes?: string; eager?: boolean }) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={image.srcSm || image.src} srcSet={image.srcSm ? `${image.srcSm} 800w, ${image.src} 1600w` : undefined} sizes={sizes} alt={image.alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
   );
 }
 
+const pad = (n: number) => String(n).padStart(2, '0');
+
 export default function HomePage() {
   const maisons = getPublicMaisons();
-  const catalog = getPublicCatalog().slice(0, 3);
-  const projects = getPublicProjects().slice(0, 3);
-  const posts = getPosts().slice(0, 2);
+  const catalog = getPublicCatalog();
+  const projects = getPublicProjects();
+  const posts = getPosts().slice(0, 3);
 
   return (
     <>
       {/* 01 — Hero institucional */}
-      <section className="noir-hero" aria-labelledby="hero-title">
-        <div className="noir-hero__logo"><LogoPlate fluid priority /></div>
-        <h1 id="hero-title" className="noir-hero__title">
-          Grandes marcas merecem mercados à altura de sua <em>ambição</em>.
-        </h1>
-        <p className="noir-hero__sub">
-          Representação internacional, desenvolvimento de mercados e projetos especiais para empresas que desejam crescer com direção comercial, identidade e relações duradouras.
-        </p>
-        <div className="noir-hero__actions">
-          <Link href="/our-expertise/" className="btn">Explorar nossos universos</Link>
-          <ArrowLink href="/contact/">Desenvolver um projeto</ArrowLink>
+      <section className="st-hero" aria-labelledby="hero-title">
+        <span className="st-hero__glow-a" aria-hidden="true" />
+        <span className="st-hero__glow-b" aria-hidden="true" />
+        <div className="container st-hero__inner">
+          <div className="st-strip">
+            <span className="text-gold">Perfumaria · Beleza · Luxo</span>
+            <span className="muted">Representação · Mercados · Projetos especiais</span>
+          </div>
+          <div className="st-hero__grid">
+            <div className="st-hero__text">
+              <h1 id="hero-title" className="st-hero__title">
+                Grandes marcas merecem mercados à altura de sua <em>ambição.</em>
+              </h1>
+              <p className="lead mt-8" style={{ maxWidth: '56ch' }}>
+                Representação internacional, desenvolvimento de mercados e projetos especiais para empresas que desejam crescer com direção comercial, identidade e relações duradouras.
+              </p>
+              <div className="row mt-10" style={{ gap: 16 }}>
+                <Link href="/our-expertise/" className="btn btn--primary">Explorar nossos universos</Link>
+                <Link href="/contact/" className="btn">Desenvolver um projeto</Link>
+              </div>
+              <div className="st-ledger">
+                <div><span className="serial">Especialidades</span><b>08 <span>universos</span></b></div>
+                <div><span className="serial">Jornadas</span><b>06 <span>comerciais</span></b></div>
+                <div><span className="serial">Mercados</span><b>03 <span>territórios</span></b></div>
+              </div>
+            </div>
+            <div className="st-hero__plate">
+              <div className="plate-frame">
+                <div className="media media--4x5"><Img image={IMAGES.copaiba} sizes="(max-width: 900px) 100vw, 40vw" eager /></div>
+                <span className="stamp" style={{ top: 28, right: 28, padding: '8px 12px' }}><span className="serial">Proveniência · Amazônia</span></span>
+              </div>
+              <Link href="/grand-tour/" className="stamp dossier--link" style={{ left: -28, bottom: -28, display: 'block' }}>
+                <span className="serial" style={{ display: 'block' }}>Destaque · FÊNIX Grand Tour</span>
+                <span className="body-sm" style={{ display: 'block', marginTop: 8, color: 'var(--ivory)' }}>Jornadas curadas pelo universo da perfumaria e do luxo.</span>
+                <span className="link-arrow mt-2">Conhecer <span className="arr" aria-hidden="true">→</span></span>
+              </Link>
+            </div>
+          </div>
         </div>
-        <span className="noir-hero__cue" aria-hidden="true" />
       </section>
 
-      {/* Grand Tour — destaque imediato */}
-      <Link href="/grand-tour/" className="feature" aria-label="FÊNIX Grand Tour — experiências e viagens privadas">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="feature__img" src={IMAGES.river.src} srcSet={`${IMAGES.river.srcSm} 800w, ${IMAGES.river.src} 1600w`} sizes="100vw" alt={IMAGES.river.alt} />
-        <span className="feature__shade" aria-hidden="true" />
-        <span className="container feature__body grid" style={{ alignItems: 'end' }}>
-          <span className="col-7">
-            <span className="eyebrow text-gold" style={{ display: 'block' }}>FÊNIX Grand Tour</span>
-            <span className="display" style={{ display: 'block', marginTop: 16 }}>Grand Tour</span>
-          </span>
-          <span className="col-4 col-start-9 stack">
-            <span className="lead" style={{ display: 'block' }}>Jornadas curadas pelo universo da perfumaria e do luxo — ateliês, origens, maisons e destinos culturais.</span>
-            <span className="link-arrow">Conhecer as jornadas <span className="arr" aria-hidden="true">→</span></span>
-          </span>
-        </span>
-      </Link>
-
-      {/* 02 — Who We Work With */}
+      {/* 02 — Who We Work With (abre com o manifesto) */}
       <section className="section" aria-labelledby="s2">
         <div className="container reveal">
-          <SectionHead label="Who We Work With" id="s2" title={<>Com quem <span className="italic">trabalhamos</span></>} aside={<p>{POSITIONING_LINE}</p>} />
-          <div className="journeys">
-            {JOURNEYS.map((j) => (
-              <Link key={j.slug} href={`/who-we-work-with/${j.slug}/`} className="journey">
-                <span className="eyebrow">{j.number}</span>
-                <span>
-                  <span className="journey__title" style={{ display: 'block' }}>{j.name}</span>
-                  <span className="body-sm muted" style={{ display: 'block', marginTop: 14 }}>{j.short}</span>
-                </span>
-              </Link>
-            ))}
+          <div className="grid" style={{ alignItems: 'center' }}>
+            <div className="col-4">
+              <div className="seal"><LogoPlate fluid /></div>
+            </div>
+            <div className="col-7 col-start-6 stack-lg">
+              <p className="serial text-gold">Manifesto · Emotion · Logic · Perception</p>
+              <p className="st-quote">“A emoção desperta o desejo. <em>A lógica orienta o capital.</em> A percepção constrói autoridade duradoura.”</p>
+              <div className="grid" style={{ rowGap: 24 }}>
+                <div className="col-6 rule-top">
+                  <p className="serial text-gold">Presença não é operação</p>
+                  <p className="body-sm muted mt-3">{POSITIONING_LINE} Distribuição cria presença; coordenação cria operação.</p>
+                </div>
+                <div className="col-6 rule-top">
+                  <p className="serial text-gold">Princípios</p>
+                  <ul className="body-sm muted mt-3" style={{ display: 'grid', gap: 6 }}>{PRINCIPLES.map((p) => <li key={p.name}>{p.name}</li>)}</ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-16" style={{ paddingTop: 'var(--space-16)', borderTop: '1px solid rgba(113,110,101,.25)' }}>
+            <SectionHead label="02 / Who We Work With" id="s2" title={<>Com quem <em>trabalhamos</em></>} aside={<p>Seis jornadas comerciais, cada uma com página própria e formulário contextual.</p>} />
+            <div className="dossier-grid dossier-grid--3">
+              {JOURNEYS.map((j, i) => (
+                <Link key={j.slug} href={`/who-we-work-with/${j.slug}/`} className="dossier">
+                  <span className="serial">[ {pad(i + 1)} / 06 ]</span>
+                  <h3 className="dossier__title">{j.name}</h3>
+                  <p className="dossier__text">{j.short}</p>
+                  <span className="dossier__foot"><span className="serial text-gold">{j.intent}</span><span className="text-gold" aria-hidden="true">→</span></span>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* 03 — Selected Maisons */}
       <section className="section section--band" aria-labelledby="s3">
-        <div className="container grid reveal" style={{ alignItems: 'center' }}>
-          <div className="col-5">
-            <p className="eyebrow text-gold">Selected Maisons</p>
-            <h2 id="s3" className="h1 mt-6">Maisons</h2>
-          </div>
-          <div className="col-6 col-start-7 stack-lg">
-            {maisons.length === 0 && (
-              <>
-                <p className="lead">Cada maison representada é apresentada aqui com sua história, coleções e mercados — sempre com a autorização da própria marca.</p>
-                <p className="muted measure">Para casas que avaliam novos territórios, a conversa começa por um diagnóstico do mercado e do papel de cada parceiro local.</p>
-                <div className="row">
-                  <Link href="/who-we-work-with/maisons-and-brands/" className="btn">Apresentar uma maison</Link>
-                  <ArrowLink href="/maisons/">Diretório</ArrowLink>
-                </div>
-              </>
-            )}
+        <div className="container reveal">
+          <SectionHead label="03 / Selected Maisons" id="s3" title={<>Maisons <em>representadas</em></>} aside={<ArrowLink href="/maisons/">Diretório completo</ArrowLink>} />
+          <div className="table-wrap">
+            <table className="table table--archive">
+              <thead>
+                <tr>{['Índice', 'Maison', 'Origem', 'Categorias', 'Mercados', 'Status'].map((h) => <th key={h} scope="col">{h}</th>)}</tr>
+              </thead>
+              <tbody>
+                {maisons.length === 0 && (
+                  <tr>
+                    <td>MSN-—</td>
+                    <td colSpan={4} style={{ paddingBlock: 28 }}>
+                      <span className="h3" style={{ display: 'block' }}>Publicação mediante autorização de cada maison</span>
+                      <span className="body-sm muted" style={{ display: 'block', marginTop: 8 }}>O arquivo de maisons representadas é exibido aqui assim que cada marca aprova a sua página.</span>
+                    </td>
+                    <td><Link href="/who-we-work-with/maisons-and-brands/" className="text-btn">Apresentar uma maison</Link></td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
@@ -108,16 +140,23 @@ export default function HomePage() {
       {/* 04 — Portfolio & Opportunities */}
       <section className="section" aria-labelledby="s4">
         <div className="container reveal">
-          <SectionHead label="Portfolio & Opportunities" id="s4" title={<>Ingredientes e <span className="italic">oportunidades</span></>} aside={<><p>Matérias-primas amazônicas em avaliação técnica e comercial. Preços e condições ficam restritos ao canal B2B.</p><p className="mt-4"><ArrowLink href="/portfolio/">Abrir o catálogo</ArrowLink></p></>} />
-          <div className="entries">
-            {catalog.map((c) => (
-              <Link key={c.slug} href={`/portfolio/${c.slug}/`} className="entry">
-                <Visual image={c.image} word={c.name} />
-                <div className="entry__meta"><span className="eyebrow">{c.category}</span><span className="status status--development">{AVAILABILITY_LABEL[c.availability]}</span></div>
-                <h3 className="entry__title">{c.name}</h3>
-                <p className="entry__text">{c.summary}</p>
-              </Link>
-            ))}
+          <SectionHead label="04 / Portfolio & Opportunities" id="s4" title={<>Ingredientes &amp; <em>oportunidades</em></>} aside={<><p>Matérias-primas amazônicas em avaliação. Preços, estoque e condições ficam restritos ao canal B2B.</p><p className="mt-4"><ArrowLink href="/portfolio/">Abrir o catálogo B2B</ArrowLink></p></>} />
+          <div className="table-wrap">
+            <table className="table table--archive">
+              <thead><tr>{['Índice', 'Item', 'Tipo', 'Categoria', 'Origem', 'Disponibilidade'].map((h) => <th key={h} scope="col">{h}</th>)}</tr></thead>
+              <tbody>
+                {catalog.map((c, i) => (
+                  <tr key={c.slug}>
+                    <td>PF-{pad(i + 1)}</td>
+                    <td><Link href={`/portfolio/${c.slug}/`} className="h3" style={{ fontSize: 18 }}>{c.name}</Link><span className="body-sm muted" style={{ display: 'block', marginTop: 4 }}>{c.brand}</span></td>
+                    <td className="body-sm">{c.type}</td>
+                    <td className="body-sm">{c.category}</td>
+                    <td className="body-sm">{c.origin}</td>
+                    <td><span className="tag">{AVAILABILITY_LABEL[c.availability]}</span></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
@@ -125,22 +164,49 @@ export default function HomePage() {
       {/* 05 — Our Expertise */}
       <section className="section section--band" aria-labelledby="s5">
         <div className="container reveal">
-          <SectionHead label="Our Expertise" id="s5" title={<>Oito <span className="italic">especialidades</span></>} aside={<ArrowLink href="/our-expertise/">Ver todas</ArrowLink>} />
-          <IndexList rows={EXPERTISE.map((e) => ({ num: e.number, title: e.name, desc: e.short, href: e.externalPage || `/our-expertise/${e.slug}/` }))} />
+          <div className="grid" style={{ alignItems: 'end', marginBottom: 'clamp(40px, 5vw, 72px)' }}>
+            <div className="col-7">
+              <p className="eyebrow text-gold" style={{ display: 'flex', gap: 14, alignItems: 'center' }}><span style={{ width: 6, height: 6, background: 'var(--bordo)', display: 'inline-block' }} />05 / Our Expertise</p>
+              <h2 id="s5" className="h2 mt-4">As oito <em>especialidades</em></h2>
+              <p className="lead mt-6" style={{ maxWidth: '60ch' }}>Uma estrutura integrada que vai das matérias-primas e da pesquisa à representação de marcas, ao varejo, à comunicação e às experiências.</p>
+            </div>
+            <Link href="/fenix-bio/" className="col-4 col-start-9 dossier dossier--raised" style={{ padding: '24px 24px 20px' }}>
+              <span className="serial" style={{ color: 'var(--phoenix-red)' }}>■ Pesquisa &amp; desenvolvimento</span>
+              <span className="dossier__title">FÊNIX BIO</span>
+              <span className="dossier__text">Iniciativa de P&amp;D industrial conectada à FÊNIX Labs e à FÊNIX Amazon Raw. BIOFOOD · BIOFRAGRANCE.</span>
+              <span className="dossier__foot"><span className="serial">5 projetos em avaliação</span><span className="text-gold">→</span></span>
+            </Link>
+          </div>
+          <div className="dossier-grid">
+            {EXPERTISE.map((e) => (
+              <Link key={e.slug} href={e.externalPage || `/our-expertise/${e.slug}/`} className="dossier">
+                <span className="serial">{e.number} / 08</span>
+                <h3 className="dossier__title">{e.name}</h3>
+                <p className="dossier__text">{e.short}</p>
+                <span className="dossier__foot"><span className="serial text-gold">{e.cta.label}</span></span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* 06 — Special Projects */}
       <section className="section" aria-labelledby="s6">
         <div className="container reveal">
-          <SectionHead label="Special Projects" id="s6" title={<>Projetos <span className="italic">especiais</span></>} aside={<><p>Estudos, conceitos e projetos em andamento, cada um com o seu estágio real.</p><p className="mt-4"><ArrowLink href="/special-projects/">Biblioteca de projetos</ArrowLink></p></>} />
-          <div className="entries">
-            {projects.map((p) => (
-              <Link key={p.slug} href={`/special-projects/${p.slug}/`} className="entry">
-                <Visual image={p.image} word={p.title} ratio="3x2" />
-                <div className="entry__meta"><span className="eyebrow">{p.track || p.category}</span><StageBadge stage={p.stage} /></div>
-                <h3 className="entry__title">{p.title}</h3>
-                <p className="entry__text">{p.stageNote}</p>
+          <SectionHead label="06 / Special Projects" id="s6" title={<>Projetos &amp; <em>linhas de pesquisa</em></>} aside={<><p>Cada projeto mostra o seu estágio real. Conceito não é produto; resultados só são publicados quando comprovados.</p><p className="mt-4"><ArrowLink href="/special-projects/">Biblioteca de projetos</ArrowLink></p></>} />
+          <div className="bio-grid">
+            {projects.map((p, i) => (
+              <Link key={p.slug} href={`/special-projects/${p.slug}/`} className="bio-card">
+                <div className="media" style={{ position: 'relative' }}>
+                  {p.image ? <Img image={p.image} /> : <div className="plate" style={{ position: 'absolute', inset: 0 }}><span className="plate__word">{p.title}</span></div>}
+                  <span className="bio-card__label serial">{p.track ? `Track ${p.track === 'BIOFOOD' ? 'BD' : 'BF'}-${pad(i + 1)}` : `Projeto ${pad(i + 1)}`}</span>
+                </div>
+                <div className="bio-card__body">
+                  <span className="serial text-gold">{p.track || p.category}</span>
+                  <h3 className="dossier__title">{p.title}</h3>
+                  <p className="dossier__text">{p.stageNote}</p>
+                  <span className="dossier__foot"><StageBadge stage={p.stage} /><span className="serial">{p.territory}</span></span>
+                </div>
               </Link>
             ))}
           </div>
@@ -150,13 +216,14 @@ export default function HomePage() {
       {/* 07 — Selected Markets */}
       <section className="section section--band" aria-labelledby="s7">
         <div className="container reveal">
-          <SectionHead label="Selected Markets" id="s7" title={<>Três <span className="italic">territórios</span></>} aside={<><p>Indicamos o status de cada mercado: território de interesse não é operação local constituída.</p><p className="mt-4"><ArrowLink href="/markets/">Detalhes por mercado</ArrowLink></p></>} />
-          <div className="markets">
+          <SectionHead label="07 / Selected Markets" id="s7" title={<>Arquitetura <em>territorial</em></>} aside={<><p>Território de interesse não é operação local constituída — o status de cada mercado é indicado.</p><p className="mt-4"><ArrowLink href="/markets/">Detalhes por mercado</ArrowLink></p></>} />
+          <div className="dossier-grid dossier-grid--3">
             {MARKETS.map((m) => (
-              <div key={m.slug} className="market">
-                <span className="eyebrow">{m.statusLabel}</span>
+              <div key={m.slug} className="dossier" style={{ borderLeft: '2px solid var(--gold)' }}>
+                <span className="serial text-gold">{m.statusLabel}</span>
                 <h3 className="market__name">{m.name}</h3>
-                <p className="body-sm muted">{m.text}</p>
+                <p className="dossier__text">{m.text}</p>
+                <span className="dossier__foot"><span className="serial">{m.focus[0]}</span></span>
               </div>
             ))}
           </div>
@@ -166,11 +233,11 @@ export default function HomePage() {
       {/* 08 — Our Approach */}
       <section className="section" aria-labelledby="s8">
         <div className="container reveal">
-          <SectionHead label="Our Approach" id="s8" title={<>Do diagnóstico ao <span className="italic">crescimento</span></>} />
+          <SectionHead label="08 / Our Approach" id="s8" title={<>Discover → Validate → Structure → Activate → <em>Grow</em></>} />
           <ol className="steps">
             {APPROACH.map((s) => (
               <li key={s.name}>
-                <span className="eyebrow">{s.pt}</span>
+                <span className="serial">{s.pt}</span>
                 <p className="step-name">{s.name}</p>
                 <p className="body-sm muted">{s.text}</p>
               </li>
@@ -180,29 +247,30 @@ export default function HomePage() {
       </section>
 
       {/* 09 — Grand Tour */}
-      <section className="section section--band" aria-labelledby="s9">
-        <div className="container grid reveal" style={{ alignItems: 'center' }}>
-          <div className="col-6">
-            <div className="media media--4x5">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMAGES.brazilNut.srcSm} srcSet={`${IMAGES.brazilNut.srcSm} 800w, ${IMAGES.brazilNut.src} 1600w`} sizes="(max-width: 900px) 100vw, 50vw" alt={IMAGES.brazilNut.alt} loading="lazy" />
+      <section className="section section--deep" aria-labelledby="s9">
+        <div className="container reveal">
+          <div className="feature" style={{ minHeight: 'min(78vh, 760px)', border: '1px solid rgba(113,110,101,.3)' }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="feature__img" src={IMAGES.river.src} srcSet={`${IMAGES.river.srcSm} 800w, ${IMAGES.river.src} 1600w`} sizes="100vw" alt={IMAGES.river.alt} loading="lazy" />
+            <span className="feature__shade" aria-hidden="true" />
+            <div className="feature__body" style={{ paddingInline: 'clamp(24px, 5vw, 72px)' }}>
+              <div className="grid" style={{ alignItems: 'end' }}>
+                <div className="col-7 stack-lg">
+                  <p className="serial" style={{ color: 'var(--gold)' }}><span style={{ color: 'var(--phoenix-red)' }}>■</span> 09 / FÊNIX Grand Tour</p>
+                  <h2 id="s9" className="h1">Experiências &amp; viagens <em>privadas</em></h2>
+                  <p className="lead" style={{ color: 'var(--ivory)', maxWidth: '52ch' }}>Jornadas pelo universo da perfumaria e do luxo — ateliês, origens de matérias-primas, maisons e destinos culturais — com acesso, contexto e as pessoas certas.</p>
+                  <div className="row"><Link href="/grand-tour/#formulario" className="btn btn--primary">Registrar interesse</Link><ArrowLink href="/grand-tour/">Conhecer o Grand Tour</ArrowLink></div>
+                </div>
+                <div className="col-4 col-start-9 stack">
+                  {GRAND_TOUR_ENTRIES.map((g) => (
+                    <Link key={g.slug} href={`/grand-tour/${g.slug}/`} className="dossier" style={{ background: 'rgba(23,22,18,.88)', padding: '18px 20px', gap: 6 }}>
+                      <span className="serial text-gold">Entrada {g.number}</span>
+                      <span className="dossier__title" style={{ fontSize: 18 }}>{g.name}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="col-5 col-start-8 stack-lg">
-            <p className="eyebrow text-gold">FÊNIX Grand Tour</p>
-            <h2 id="s9" className="h1">Experiências e viagens <span className="italic">privadas</span></h2>
-            <ul className="index-list">
-              {GRAND_TOUR_ENTRIES.map((g) => (
-                <li key={g.slug}>
-                  <Link href={`/grand-tour/${g.slug}/`} className="index-row" style={{ gridTemplateColumns: '40px 1fr 24px' }}>
-                    <span className="index-row__num">{g.number}</span>
-                    <span className="index-row__title" style={{ fontSize: 'clamp(24px, 2.2vw, 32px)' }}>{g.name}</span>
-                    <span className="index-row__arrow" aria-hidden="true">→</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <Link href="/grand-tour/#formulario" className="btn">Registrar interesse</Link>
           </div>
         </div>
       </section>
@@ -210,32 +278,39 @@ export default function HomePage() {
       {/* 10 — Journal */}
       <section className="section" aria-labelledby="s10">
         <div className="container reveal">
-          <SectionHead label="Journal" id="s10" title={<>Notas de <span className="italic">mercado</span></>} aside={<ArrowLink href="/journal/">Todos os artigos</ArrowLink>} />
-          {posts.map((p) => (
-            <Link key={p.slug} href={`/journal/${p.slug}/`} className="grid entry" style={{ alignItems: 'end', display: 'grid' }}>
-              <div className="col-7">
-                <h3 className="h2" style={{ transition: 'color var(--dur) var(--ease)' }}>{p.title}</h3>
-              </div>
-              <div className="col-4 col-start-9 stack">
-                <p className="eyebrow muted">{p.category} · <time dateTime={p.date}>{formatDatePt(p.date)}</time></p>
-                <p className="muted">{p.subtitle}</p>
-                <span className="link-arrow">Ler o artigo <span className="arr" aria-hidden="true">→</span></span>
-              </div>
-            </Link>
-          ))}
+          <SectionHead label="10 / Journal" id="s10" title={<>Monografias &amp; <em>inteligência</em></>} aside={<ArrowLink href="/journal/">Todos os artigos</ArrowLink>} />
+          <div className="bio-grid">
+            {posts.map((p, i) => (
+              <Link key={p.slug} href={`/journal/${p.slug}/`} className="bio-card">
+                <div className="media plate" style={{ aspectRatio: '4 / 3' }}><span className="plate__word">{p.category}</span></div>
+                <div className="bio-card__body">
+                  <span className="dossier__foot" style={{ marginTop: 0, paddingTop: 0, borderTop: 0 }}><span className="serial text-gold">{p.category}</span><time className="serial" dateTime={p.date}>{formatDatePt(p.date)}</time></span>
+                  <h3 className="dossier__title">{p.title}</h3>
+                  <p className="dossier__text">{p.subtitle}</p>
+                  <span className="dossier__foot"><span className="serial">Memorando № {pad(i + 1)}</span><span className="text-gold">→</span></span>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* 11 — Start a Project */}
-      <section className="section section--bordo" aria-labelledby="s11" id="start-a-project">
+      <section className="section section--band" aria-labelledby="s11" id="start-a-project">
         <div className="container grid reveal">
           <div className="col-4 stack-lg">
-            <p className="eyebrow text-gold">Start a Project</p>
-            <h2 id="s11" className="h1">Vamos falar do seu próximo <span className="italic">mercado</span></h2>
+            <p className="eyebrow text-gold">11 / Start a Project</p>
+            <h2 id="s11" className="h1" style={{ fontSize: 'clamp(32px, 3.6vw, 54px)' }}>Desenvolva o seu próximo <em>mercado</em></h2>
             <p className="muted">Conte o que você deseja desenvolver. A solicitação é classificada por categoria e território e encaminhada ao responsável.</p>
+            <div className="rule-top">
+              <p className="serial text-gold">Contato direto</p>
+              <a href={`mailto:${SITE.email}`} className="body-sm" style={{ display: 'block', marginTop: 8 }}>{SITE.email}</a>
+            </div>
           </div>
           <div className="col-7 col-start-6">
-            <RequestForm formId="home-start-a-project" />
+            <div className="dossier" style={{ padding: 'clamp(24px, 3vw, 40px)' }}>
+              <RequestForm formId="home-start-a-project" />
+            </div>
           </div>
         </div>
       </section>

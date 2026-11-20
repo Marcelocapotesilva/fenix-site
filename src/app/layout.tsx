@@ -1,11 +1,10 @@
-import '@fontsource/cormorant-garamond/400.css';
-import '@fontsource/cormorant-garamond/500.css';
-import '@fontsource/cormorant-garamond/400-italic.css';
-import '@fontsource/cormorant-garamond/300.css';
-import '@fontsource/cormorant-garamond/300-italic.css';
-import '@fontsource/montserrat/400.css';
-import '@fontsource/montserrat/500.css';
-import '@fontsource/montserrat/600.css';
+import '@fontsource/bodoni-moda/400.css';
+import '@fontsource/bodoni-moda/500.css';
+import '@fontsource/bodoni-moda/400-italic.css';
+import '@fontsource/manrope/300.css';
+import '@fontsource/manrope/400.css';
+import '@fontsource/manrope/500.css';
+import '@fontsource/manrope/600.css';
 import '@/styles/globals.css';
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
@@ -25,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: { siteName: SITE.name, type: 'website', locale: 'pt_BR', images: ['/brand/fenix-fragrances-holding-official.png'] },
 };
 
-export const viewport: Viewport = { themeColor: '#000000', width: 'device-width', initialScale: 1 };
+export const viewport: Viewport = { themeColor: '#171612', width: 'device-width', initialScale: 1 };
 
 const searchIndex = buildSearchIndex().map((d) => ({ ...d, text: d.text.slice(0, 900) }));
 

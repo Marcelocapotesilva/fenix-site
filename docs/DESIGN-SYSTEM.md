@@ -2,29 +2,33 @@
 
 Fonte de verdade: `src/styles/tokens.css` (tokens) e `src/styles/globals.css` (componentes).
 
-## Princípios — "Maison noir"
-Canvas preto `#000` (o mesmo campo da logo oficial, que se funde à página), tinta marfim, filetes dourados, 0px de raio, sem caixas nem sombras. Serifada leve em grandes tamanhos, itálicos dourados como acento, rótulos pequenos em Montserrat. Vermelho da fênix só como ponto (Grand Tour). Bordô em uma única banda (Start a Project).
+## Origem
+Sistema visual definido no Google Stitch ("Haute Parfumerie & Botanical Heritage", pacote enviado em 20/11/2026) e implementado aqui com o conteúdo real do site. O conteúdo de exemplo das maquetes do Stitch (maisons, números, escritórios, certificações) não foi usado.
+
+## Princípios
+Planos obsidiana em degraus (`#171612` → `#201E19` → `#29261F`), filetes minerais de 1px, dossiês monolíticos no lugar de cards, 0px de raio, sem sombras. Bodoni Moda em caixa-alta com itálicos champanhe; Manrope para corpo e rótulos. Bordô como ação principal; vermelho da fênix só em marcadores. Faixa do cabeçalho e rodapé em `#000` para a logo oficial se fundir ao fundo.
 
 ## Cores
 | Token | Valor | Uso |
 |---|---|---|
-| `--black` | `#000000` | Canvas, masthead, rodapé |
-| `--night` / `--night-2` | `#0C0B0A` / `#141210` | Bandas e superfícies elevadas |
-| `--ivory` | `#EDE7DC` | Texto |
-| `--ivory-2` | `#B4AC9E` | Texto secundário (9,6:1 sobre preto) |
-| `--ivory-3` | `#7D776C` | Metadados e decoração |
-| `--gold` | `#C9A96E` | Dourado da marca: filetes, itálicos, botões, foco |
-| `--bordo-deep` | `#4A1620` | Banda Start a Project, faixa de integração |
-| `--phoenix-red` | `#C41E1E` | Ponto do Grand Tour |
-| `--error` | `#E0827A` | Mensagens de erro |
+| `--canvas` | `#171612` | Obsidian Warm — fundo |
+| `--night` | `#201E19` | Deep Charcoal — bandas, dossiês, campos |
+| `--night-2` | `#29261F` | Smoked Black — elevação, hover |
+| `--black` | `#000000` | Cabeçalho, rodapé, selo da logo |
+| `--ivory` | `#F1EEE7` | Texto |
+| `--ivory-2` | `#A7A196` | Warm Grey — texto secundário |
+| `--mineral` | `#716E65` | Filetes (20–45% de opacidade) |
+| `--gold` | `#B8A17B` | Antique Champagne — itálicos, rótulos, bordas ativas |
+| `--gold-soft` | `#D0BD99` | Soft Gold — hover |
+| `--bordo` | `#652D37` | Deep Burgundy — botão principal, marcadores |
+| `--phoenix-red` | `#C8232B` | Hover do botão principal, marcador do Grand Tour |
 
 ## Tipografia
-- **Cormorant Garamond** 300/400 + itálico — display, títulos, citações (diretriz de marca).
-- **Montserrat** 400/500/600 — interface, corpo, rótulos (diretriz de marca).
-- Escala bimodal com `clamp()`; rótulos 10–11px, caixa-alta, tracking 0,22em.
+- **Bodoni Moda** 400/500/itálico — títulos em caixa-alta, palavra de ênfase em itálico champanhe.
+- **Manrope** 300/400/500/600 — corpo (300 para leads), rótulos 11px 600 em caixa-alta com tracking 0,2em.
 
 ## Espaçamento e grid
-Ritmo 4/8, seções `clamp(80px, 11vw, 168px)`, gutter `clamp(22px, 4vw, 64px)`, largura máxima 1440px, grid de 12 colunas. Breakpoints 1100 / 900 / 720 / 600px.
+Grid de 12 colunas, margens `clamp(22px, 4vw, 64px)`, seções `clamp(80px, 11vw, 168px)`, largura máxima 1440px.
 
 ## Componentes
 | Componente | Classe / arquivo |

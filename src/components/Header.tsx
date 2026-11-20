@@ -28,17 +28,6 @@ export function Header({ searchIndex }: { searchIndex: SearchDoc[] }) {
   const { t, locale } = useI18n();
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const isHome = pathname === '/';
-  const [pastHero, setPastHero] = useState(false);
-
-  useEffect(() => {
-    if (!isHome) return;
-    const onScroll = () => setPastHero(window.scrollY > window.innerHeight * 0.45);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [isHome]);
-
   useEffect(() => {
     setMenuOpen(false);
     setSearchOpen(false);
@@ -67,23 +56,23 @@ export function Header({ searchIndex }: { searchIndex: SearchDoc[] }) {
       <a href="#conteudo" className="skip-link">{t('skip')}</a>
       <header className="masthead">
         <div className="container masthead__inner">
-          <div className="masthead__left">
-            <span className="masthead__tagline hide-mobile">{t('tagline')}</span>
+          <Link href="/" className="masthead__home masthead__brand" aria-label="FÊNIX — Fragrances Holding, página inicial">
+            <LogoPlate />
+          </Link>
+          <div className="masthead__center hide-mobile">
+            <span className="masthead__tagline">Europa · Brasil · América Latina</span>
+          </div>
+          <div className="masthead__right">
+            <span className="hide-mobile"><LangSwitch /></span>
+            <button type="button" className="util-link" onClick={() => setSearchOpen(true)} aria-haspopup="dialog" aria-label={t('search')}>
+              <IconSearch />
+            </button>
+            <Link href="/partner-access/" className="util-link util-link--boxed hide-mobile">
+              {t('partnerAccess')}
+            </Link>
             <button type="button" className="menu-toggle" aria-expanded={menuOpen} aria-controls="mobile-menu" onClick={() => setMenuOpen(true)}>
               <IconMenu /> {t('menu')}
             </button>
-          </div>
-          <Link href="/" className={`masthead__home masthead__brand${isHome && !pastHero ? ' is-hidden' : ''}`} aria-label="FÊNIX — Fragrances Holding, página inicial" tabIndex={isHome && !pastHero ? -1 : undefined}>
-            <LogoPlate />
-          </Link>
-          <div className="masthead__right">
-            <button type="button" className="util-link" onClick={() => setSearchOpen(true)} aria-haspopup="dialog">
-              <IconSearch /> <span className="hide-mobile">{t('search')}</span>
-            </button>
-            <span className="hide-mobile"><LangSwitch /></span>
-            <Link href="/partner-access/" className="util-link util-link--boxed hide-mobile">
-              <IconLock /> {t('partnerAccess')}
-            </Link>
           </div>
         </div>
       </header>
