@@ -1,0 +1,109 @@
+/* ==========================================================================
+   FÊNIX — Design tokens
+   Palette from the Projeto Fênix brief, logo colours sampled from the official file.
+   Principles (broadsheet): warm ivory canvas, carbon ink, hairline rules,
+   0px radius, no shadows, no gradients, size contrast does the work.
+   ========================================================================== */
+
+:root {
+  /* Brief palette */
+  --carvao: #20201e;          /* ink — all text and rules */
+  --marfim: #f3f0e9;          /* canvas */
+  --champanhe: #b6a78f;       /* secondary rules, labels on dark */
+  --bordo: #762433;           /* accent — focus, active, errors */
+  --cinza-mineral: #8a887e;   /* decorative only (fails AA for body text on ivory) */
+
+  /* Derived surfaces */
+  --banda: #e8e2d6;           /* secondary tonal band (ivory × champagne) */
+  --banda-2: #ddd5c6;         /* hover on band */
+  --logo-black: #000000;      /* MUST stay pure black: the official logo sits on #000 */
+  --ink-soft: #55534c;        /* muted text — 6.9:1 on ivory */
+
+  /* Official logo accents (sampled, use sparingly) */
+  --phoenix-red: #b81818;
+  --signature-gold: #b8a078;
+
+  /* Semantic */
+  --color-bg: var(--marfim);
+  --color-text: var(--carvao);
+  --color-muted: var(--ink-soft);
+  --color-rule: var(--carvao);
+  --color-rule-soft: rgba(32, 32, 30, 0.18);
+  --color-accent: var(--bordo);
+  --color-focus: var(--bordo);
+  --color-error: var(--bordo);
+
+  /* Type families */
+  --font-display: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Type scale — bimodal: reading sizes vs announcing sizes */
+  --text-caption: 12px;
+  --text-label: 11px;
+  --text-body-sm: 14px;
+  --text-body: 16px;
+  --text-lead: clamp(19px, 1.6vw, 22px);
+  --text-h3: clamp(22px, 2vw, 28px);
+  --text-h2: clamp(32px, 3.6vw, 48px);
+  --text-h1: clamp(44px, 6vw, 84px);
+  --text-display: clamp(52px, 8.6vw, 132px);
+
+  --leading-tight: 0.92;
+  --leading-display: 0.88;
+  --leading-heading: 1.04;
+  --leading-body: 1.55;
+  --leading-ui: 1.43;
+
+  --tracking-display: -0.02em;
+  --tracking-label: 0.14em;
+  --tracking-nav: 0.08em;
+
+  /* Spacing (4/8 rhythm with editorial jumps) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  --gutter: clamp(20px, 3.4vw, 48px);
+  --section-y: clamp(64px, 9vw, 128px);
+  --page-max: 1440px;
+  --measure: 68ch;
+
+  /* Shape */
+  --radius: 0px;
+  --rule: 1px solid var(--color-rule);
+  --rule-soft: 1px solid var(--color-rule-soft);
+
+  /* Motion — discreet, opacity/transform only */
+  --dur-fast: 120ms;
+  --dur: 220ms;
+  --dur-slow: 480ms;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+
+  --masthead-h: 96px;
+  --navbar-h: 48px;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --masthead-h: 68px;
+    --navbar-h: 0px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur: 0ms;
+    --dur-slow: 0ms;
+  }
+}
