@@ -1,5 +1,5 @@
 import type { CatalogItem, Edit, Experience, Maison } from '@/lib/types';
-import { IMAGES } from './images';
+import { OILS_PORTFOLIO } from './oils';
 
 /**
  * Public B2B catalogue.
@@ -8,93 +8,13 @@ import { IMAGES } from './images';
  * as "under evaluation" — never as finished, certified or available products.
  * Prices, margins, stock and wholesale terms are NEVER part of this public model.
  */
-export const CATALOG: CatalogItem[] = [
-  {
-    slug: 'acai-seed-infusion',
-    name: 'Açaí Seed Infusion',
-    type: 'Ingrediente',
-    brand: 'FÊNIX Amazon Raw · FÊNIX BIO',
-    category: 'Infusões e tinturas',
-    origin: 'Brasil — Amazônia',
-    sku: null,
-    volume: null,
-    concentration: null,
-    availability: 'under_evaluation',
-    enabledMarkets: [],
-    documents: [
-      { name: 'Ficha técnica', status: 'pending' },
-      { name: 'Enquadramento regulatório', status: 'pending' },
-    ],
-    summary: 'Infusão a partir do caroço de açaí em avaliação técnica e regulatória.',
-    description:
-      'Material em estudo para aplicação em perfumaria. Ainda não há especificação técnica validada, volume ou condição comercial. O registro de interesse ajuda a priorizar o desenvolvimento.',
-    image: IMAGES.labPipette,
-    relatedProject: 'acai-seed-infusion',
-    publication: 'authorized',
-  },
-  {
-    slug: 'tucuma-absolute',
-    name: 'Tucumã Absolute',
-    type: 'Ingrediente',
-    brand: 'FÊNIX Amazon Raw · FÊNIX BIO',
-    category: 'Absolutos e extratos',
-    origin: 'Brasil — Amazônia',
-    sku: null,
-    volume: null,
-    concentration: null,
-    availability: 'under_evaluation',
-    enabledMarkets: [],
-    documents: [{ name: 'Nota conceitual', status: 'pending' }],
-    summary: 'Absoluto de tucumã em pesquisa conceitual e de viabilidade.',
-    description:
-      'Conceito de material para perfumaria fina. A pesquisa está em fase conceitual; não existe amostra disponível nesta etapa.',
-    relatedProject: 'tucuma-absolute',
-    publication: 'authorized',
-  },
-  {
-    slug: 'amazonian-botanical-oils',
-    name: 'Amazonian Botanical Oils',
-    type: 'Ingrediente',
-    brand: 'FÊNIX Amazon Raw',
-    category: 'Óleos e óleo-resinas',
-    origin: 'Brasil — Amazônia',
-    sku: null,
-    volume: null,
-    concentration: null,
-    availability: 'under_evaluation',
-    enabledMarkets: [],
-    documents: [
-      { name: 'Lista de materiais em avaliação', status: 'pending' },
-      { name: 'Fichas técnicas por material', status: 'pending' },
-    ],
-    summary: 'Portfólio de óleos botânicos amazônicos em avaliação para perfumaria e cosmética.',
-    description:
-      'Seleção de óleos e óleo-resinas em avaliação com fornecedores. Materiais, especificações e volumes serão publicados individualmente após qualificação.',
-    image: IMAGES.copaiba,
-    relatedProject: 'amazonian-botanical-oils',
-    publication: 'authorized',
-  },
-  {
-    slug: 'amazonian-honey',
-    name: 'Amazonian Honey',
-    type: 'Oportunidade',
-    brand: 'FÊNIX Amazon Raw · FÊNIX BIO',
-    category: 'Alimentos e nutrição',
-    origin: 'Brasil — Amazônia',
-    sku: null,
-    volume: null,
-    concentration: null,
-    availability: 'under_evaluation',
-    enabledMarkets: [],
-    documents: [{ name: 'Diagnóstico de prontidão de fornecedores', status: 'pending' }],
-    summary: 'Méis amazônicos em avaliação de prontidão de fornecedores e exportação.',
-    description:
-      'Oportunidade comercial para importadores e indústria de alimentos. A avaliação de fornecedores e de requisitos de exportação está em andamento.',
-    image: IMAGES.cupuacu,
-    relatedProject: 'amazonian-honey',
-    publication: 'authorized',
-  },
-];
+/**
+ * Public B2B catalogue = FÊNIX oils & ingredients portfolio (see oils.ts).
+ * FÊNIX BIO concepts (e.g. Tucumã Absolute, Açaí Seed Infusion) are research projects, NOT catalogue items —
+ * they live in Special Projects / FÊNIX BIO.
+ * Prices, margins, stock and wholesale terms are NEVER part of this public model.
+ */
+export const CATALOG: CatalogItem[] = OILS_PORTFOLIO;
 
 /** No maison has publication authorization yet. Registered maisons stay in the CMS only. */
 export const MAISONS: Maison[] = [];

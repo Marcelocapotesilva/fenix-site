@@ -24,7 +24,8 @@ const pad = (n: number) => String(n).padStart(2, '0');
 
 export default function HomePage() {
   const maisons = getPublicMaisons();
-  const catalog = getPublicCatalog();
+  const allCatalog = getPublicCatalog();
+  const catalog = [allCatalog.find((c) => c.slug === 'oleo-copaiba'), allCatalog.find((c) => c.slug === 'oleo-andiroba'), allCatalog.find((c) => c.slug === 'manteiga-cupuacu'), allCatalog.find((c) => c.slug === 'oleo-pau-rosa'), allCatalog.find((c) => c.category === 'Pure Fragrance Oils'), allCatalog.find((c) => c.category === 'Essential Oils')].filter((c): c is NonNullable<typeof c> => Boolean(c));
   const projects = getPublicProjects();
   const posts = getPosts().slice(0, 3);
 
@@ -140,18 +141,18 @@ export default function HomePage() {
       {/* 04 — Portfolio & Opportunities */}
       <section className="section" aria-labelledby="s4">
         <div className="container reveal">
-          <SectionHead label="04 / Portfolio & Opportunities" id="s4" title={<>Ingredientes &amp; <em>oportunidades</em></>} aside={<><p>Matérias-primas amazônicas em avaliação. Preços, estoque e condições ficam restritos ao canal B2B.</p><p className="mt-4"><ArrowLink href="/portfolio/">Abrir o catálogo B2B</ArrowLink></p></>} />
+          <SectionHead label="04 / Portfolio & Opportunities" id="s4" title={<>Portfólio de <em>óleos</em></>} aside={<><p>{allCatalog.length} itens entre óleos vegetais, manteigas, fragrance oils e essential oils — portfólio nacional e internacional. Preços e condições no canal B2B.</p><p className="mt-4"><ArrowLink href="/portfolio/">Abrir o catálogo completo</ArrowLink></p></>} />
           <div className="table-wrap">
             <table className="table table--archive">
-              <thead><tr>{['Índice', 'Item', 'Tipo', 'Categoria', 'Origem', 'Disponibilidade'].map((h) => <th key={h} scope="col">{h}</th>)}</tr></thead>
+              <thead><tr>{['Índice', 'Item', 'Linha', 'Categoria', 'Apresentações', 'Disponibilidade'].map((h) => <th key={h} scope="col">{h}</th>)}</tr></thead>
               <tbody>
                 {catalog.map((c, i) => (
                   <tr key={c.slug}>
                     <td>PF-{pad(i + 1)}</td>
-                    <td><Link href={`/portfolio/${c.slug}/`} className="h3" style={{ fontSize: 18 }}>{c.name}</Link><span className="body-sm muted" style={{ display: 'block', marginTop: 4 }}>{c.brand}</span></td>
-                    <td className="body-sm">{c.type}</td>
+                    <td><Link href={`/portfolio/${c.slug}/`} className="h3" style={{ fontSize: 18 }}>{c.name}</Link>{(c.botanical || c.sku) && <span className="body-sm muted" style={{ display: 'block', marginTop: 4 }}>{c.botanical ? <em>{c.botanical}</em> : c.sku}</span>}</td>
+                    <td className="body-sm">{c.line?.replace('Portfólio ', '')}</td>
                     <td className="body-sm">{c.category}</td>
-                    <td className="body-sm">{c.origin}</td>
+                    <td className="body-sm">{c.volume}</td>
                     <td><span className="tag">{AVAILABILITY_LABEL[c.availability]}</span></td>
                   </tr>
                 ))}

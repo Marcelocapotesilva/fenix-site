@@ -105,8 +105,9 @@ export interface Project extends Governance {
   relatedExpertise: string[];
 }
 
-export type Availability = 'confirmed' | 'on_request' | 'under_evaluation';
+export type Availability = 'in_portfolio' | 'confirmed' | 'on_request' | 'under_evaluation';
 export const AVAILABILITY_LABEL: Record<Availability, string> = {
+  in_portfolio: 'No portfólio · cotação B2B',
   confirmed: 'Disponibilidade confirmada',
   on_request: 'Sob consulta',
   under_evaluation: 'Em avaliação',
@@ -115,7 +116,10 @@ export const AVAILABILITY_LABEL: Record<Availability, string> = {
 export interface CatalogItem extends Governance {
   slug: string;
   name: string;
-  type: 'Fragrância' | 'Ingrediente' | 'Oportunidade';
+  type: string;
+  /** Portfolio line shown as a filter: Nacional / Internacional */
+  line?: 'Portfólio Nacional' | 'Portfólio Internacional';
+  botanical?: string;
   brand: string;
   category: string;
   origin: string;

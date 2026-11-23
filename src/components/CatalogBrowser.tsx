@@ -8,16 +8,18 @@ import { normalize } from '@/lib/text';
 import { IconSearch } from './Icons';
 import { AddToSelection } from './Selection';
 
-type Filters = { type: string[]; category: string[]; origin: string[]; availability: string[] };
-const EMPTY: Filters = { type: [], category: [], origin: [], availability: [] };
+type Filters = { line: string[]; category: string[]; origin: string[]; availability: string[] };
+const EMPTY: Filters = { line: [], category: [], origin: [], availability: [] };
+const PAGE = 24;
 
 export function CatalogBrowser({ items }: { items: CatalogItem[] }) {
   const [q, setQ] = useState('');
   const [f, setF] = useState<Filters>(EMPTY);
+  const [limit, setLimit] = useState(PAGE);
 
   const facets = useMemo(
     () => ({
-      type: [...new Set(items.map((i) => i.type))],
+      line: [...new Set(items.map((i) => i.line || 'Portfólio'))],
       category: [...new Set(items.map((i) => i.category))],
       origin: [...new Set(items.map((i) => i.origin))],
       availability: [...new Set(items.map((i) => i.availability))],
@@ -28,9 +30,9 @@ export function CatalogBrowser({ items }: { items: CatalogItem[] }) {
   const results = useMemo(() => {
     const terms = normalize(q).split(/\s+/).filter(Boolean);
     return items.filter((i) => {
-      const hay = normalize([i.name, i.brand, i.category, i.origin, i.type, i.summary].join(' '));
+      const hay = normalize([i.name, i.brand, i.category, i.origin, i.type, i.summary, i.sku || '', i.botanical || '', i.line || ''].join(' '));
       if (terms.some((t) => !hay.includes(t))) return false;
-      if (f.type.length && !f.type.includes(i.type)) return false;
+      if (f.line.length && !f.line.includes(i.line || 'Portfólio')) return false;
       if (f.category.length && !f.category.includes(i.category)) return false;
       if (f.origin.length && !f.origin.includes(i.origin)) return false;
       if (f.availability.length && !f.availability.includes(i.availability)) return false;
@@ -38,8 +40,10 @@ export function CatalogBrowser({ items }: { items: CatalogItem[] }) {
     });
   }, [items, q, f]);
 
-  const toggle = (k: keyof Filters, v: string) =>
+  const toggle = (k: keyof Filters, v: string) => {
+    setLimit(PAGE);
     setF((cur) => ({ ...cur, [k]: cur[k].includes(v) ? cur[k].filter((x) => x !== v) : [...cur[k], v] }));
+  };
   const active = q || Object.values(f).some((a) => a.length);
 
   const group = (k: keyof Filters, label: string, render: (v: string) => string = (v) => v) => (
@@ -60,7 +64,7 @@ export function CatalogBrowser({ items }: { items: CatalogItem[] }) {
           <label htmlFor="catalog-q" className="eyebrow">Buscar no catálogo</label>
           <div className="search-field mt-2">
             <IconSearch />
-            <input id="catalog-q" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Nome, categoria, origem…" autoComplete="off" />
+            <input id="catalog-q" value={q} onChange={(e) => { setQ(e.target.value); setLimit(PAGE); }} placeholder="Nome, código, categoria, origem…" autoComplete="off" />
           </div>
         </div>
         <div className="row" style={{ gap: 20 }}>
@@ -69,7 +73,7 @@ export function CatalogBrowser({ items }: { items: CatalogItem[] }) {
         </div>
       </div>
       <div className="filter-groups">
-        {group('type', 'Tipo')}
+        {group('line', 'Linha')}
         {group('category', 'Categoria')}
         {group('origin', 'País de origem')}
         {group('availability', 'Disponibilidade', (v) => AVAILABILITY_LABEL[v as keyof typeof AVAILABILITY_LABEL])}
@@ -86,27 +90,32 @@ export function CatalogBrowser({ items }: { items: CatalogItem[] }) {
         </div>
       ) : (
         <ul className="catalog mt-8">
-          {results.map((i) => (
+          {results.slice(0, limit).map((i) => (
             <li key={i.slug} className="catalog-row">
               <Link href={`/portfolio/${i.slug}/`} className="catalog-row__media" tabIndex={-1} aria-hidden="true">
                 {i.image ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={i.image.srcSm || i.image.src} alt="" loading="lazy" />
                 ) : (
-                  <span className="media-pending" style={{ display: 'flex', width: '100%', height: '100%' }} />
+                  <span className="plate" style={{ display: 'flex', width: '100%', height: '100%', padding: 10 }}><span className="serial text-gold">{i.sku || i.category}</span></span>
                 )}
               </Link>
               <span>
-                <span className="eyebrow muted">{i.type} · {i.category}</span>
+                <span className="eyebrow muted">{i.line ? `${i.line.replace('Portfólio ', '')} · ` : ''}{i.category}{i.sku ? ` · ${i.sku}` : ''}</span>
                 <Link href={`/portfolio/${i.slug}/`} className="catalog-row__title" style={{ display: 'block', marginTop: 4 }}>{i.name}</Link>
                 <span className="body-sm muted">{i.summary}</span>
               </span>
-              <span className="body-sm">{i.brand}<br /><span className="muted">{i.origin}</span></span>
+              <span className="body-sm">{i.volume}<br /><span className="muted">{i.botanical ? <em>{i.botanical}</em> : i.origin}</span></span>
               <span className="status status--development">{AVAILABILITY_LABEL[i.availability]}</span>
               <AddToSelection compact item={{ slug: i.slug, name: i.name, type: i.type }} />
             </li>
           ))}
         </ul>
+      )}
+      {results.length > limit && (
+        <div className="row mt-8" style={{ justifyContent: 'center' }}>
+          <button type="button" className="btn" onClick={() => setLimit((l) => l + PAGE)}>Mostrar mais ({results.length - limit})</button>
+        </div>
       )}
     </div>
   );

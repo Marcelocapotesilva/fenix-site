@@ -82,6 +82,7 @@ export const EXPERTISE: Expertise[] = [
       'Mapeamento de fornecedores e avaliação de prontidão',
       'Rastreabilidade de origem e documentação de lote',
       'Avaliação técnica e regulatória com parceiros especializados',
+      'Portfólio nacional de óleos vegetais, manteigas e grãos esfoliantes',
       'Estruturação de amostras para casas de composição e indústria',
       'Preparação para exportação e trade internacional',
       'Conexão com a pesquisa da FÊNIX BIO e da FÊNIX Labs',
@@ -100,7 +101,7 @@ export const EXPERTISE: Expertise[] = [
     relatedProjects: ['acai-seed-infusion', 'amazonian-honey', 'tucuma-absolute', 'amazonian-botanical-oils'],
     cta: { label: 'Apresentar matérias-primas', intent: 'Apresentar matérias-primas' },
     image: IMAGES.copaiba,
-    note: 'Os ingredientes apresentados estão em avaliação. Nenhum deles é oferecido como produto finalizado, certificado ou com volume garantido.',
+    note: 'O portfólio comercial de óleos e ingredientes está no Portfolio. Os projetos de pesquisa (FÊNIX BIO) são conceitos em avaliação, não produtos finalizados ou certificados.',
   },
   {
     slug: 'fenix-labs',

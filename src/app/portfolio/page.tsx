@@ -16,7 +16,7 @@ export default function PortfolioPage() {
         crumbs={[{ label: 'Portfolio' }]}
         eyebrow="Portfolio · Catálogo B2B"
         title="Portfolio & Opportunities."
-        intro="Marcas, fragrâncias, ingredientes e oportunidades comerciais. Selecione itens, monte sua lista de interesse e solicite cotação ou amostras."
+        intro="Portfólio nacional e internacional de óleos e ingredientes: óleos vegetais, manteigas, grãos esfoliantes, fragrance oils e essential oils. Selecione itens, monte sua lista de interesse e solicite cotação ou amostras."
         aside={<Link href="/portfolio/selection/" className="link-arrow">Minha lista de interesse →</Link>}
       />
       <section className="section">
@@ -36,7 +36,7 @@ export default function PortfolioPage() {
             </div>
             <div className="col-4 col-start-9 stack">
               <Notice title="Informação comercial restrita">Preços, margens, estoque e condições wholesale não são publicados. Ficam disponíveis apenas a parceiros aprovados no Partner Access.</Notice>
-              <Notice title="Marcas de terceiros">Fragrâncias e SKUs de maisons serão listados após autorização de publicação de cada marca.</Notice>
+              <Notice title="Pesquisa e desenvolvimento">Conceitos em pesquisa, como Tucumã Absolute e Açaí Seed Infusion, não são itens de catálogo: estão em <a className="text-btn" href="/fenix-bio/">FÊNIX BIO</a>.</Notice>
             </div>
           </div>
         </div>
