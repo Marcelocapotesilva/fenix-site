@@ -733,3 +733,14 @@ a.entry:hover .entry__title { color: var(--gold-soft); }
 .serial.text-gold { color: var(--gold); }
 .col-start-3 { grid-column-start: 3; }
 .mobile-menu { background: var(--black); }
+/* Transparent logo mark */
+.logo-mark { display: block; height: 100%; width: auto; max-width: none; }
+.masthead { background: rgba(23, 22, 18, 0.97); }
+.masthead__home { height: calc(var(--masthead-h) - 14px); padding-block: 2px; }
+.mobile-menu { background: var(--canvas); }
+.footer { background: #0f0e0a; }
+.footer__logo .logo-mark { width: 100%; height: auto; }
+.auth-wrap__brand { background: #0f0e0a; }
+.auth-wrap__brand .logo-mark { width: 100%; height: auto; }
+.manifesto__logo { width: clamp(150px, 16vw, 220px); height: auto; margin: 0 auto 36px; }
+.about__logo { width: clamp(150px, 16vw, 220px); height: auto; margin: 0 auto 12px; }

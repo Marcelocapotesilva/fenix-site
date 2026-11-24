@@ -1,4 +1,4 @@
-import { LOGO_SRC } from '@/content/images';
+import { LOGO_SRC, LOGO_TRANSPARENT_SRC } from '@/content/images';
 
 /**
  * Official FÊNIX — Fragrances Holding logo. The PNG is served byte-identical to the file supplied.
@@ -21,5 +21,16 @@ export function LogoFull({ label = 'FÊNIX — Fragrances Holding', priority = f
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={LOGO_SRC} alt={label} width={1600} height={1600} loading={priority ? 'eager' : 'lazy'} />
     </span>
+  );
+}
+
+/**
+ * Transparent logo (approved by FÊNIX, 24/11/2026): generated from the official PNG by converting the
+ * black field to transparency (colour-to-alpha), keeping glow and anti-aliasing. Dark backgrounds only.
+ */
+export function LogoMark({ label = 'FÊNIX — Fragrances Holding', className = '', priority = false }: { label?: string; className?: string; priority?: boolean }) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img className={`logo-mark ${className}`} src={LOGO_TRANSPARENT_SRC} alt={label} width={688} height={576} loading={priority ? 'eager' : 'lazy'} decoding="async" />
   );
 }

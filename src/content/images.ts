@@ -58,3 +58,5 @@ export const IMAGES = {
 } satisfies Record<string, ImageRef>;
 
 export const LOGO_SRC = '/brand/fenix-fragrances-holding-official.png';
+/** Transparent version (black field converted to alpha from the official file, no redraw). For dark backgrounds only. 688×576. */
+export const LOGO_TRANSPARENT_SRC = '/brand/fenix-fragrances-holding-transparent.png';

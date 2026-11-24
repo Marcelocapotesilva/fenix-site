@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { LogoMark } from '@/components/Logo';
 import { RequestForm } from '@/components/RequestForm';
 import { ArrowLink, SectionHead, StageBadge } from '@/components/ui';
 import { EXPERTISE } from '@/content/expertise';
@@ -76,6 +77,7 @@ export default function HomePage() {
       <section className="section" aria-labelledby="s2">
         <div className="container reveal">
           <div className="manifesto">
+            <LogoMark className="manifesto__logo" />
             <p className="serial text-gold manifesto__label">Manifesto · Emotion · Logic · Perception</p>
             <p className="st-quote manifesto__quote">“A emoção desperta o desejo. <em>A lógica orienta o capital.</em> A percepção constrói autoridade duradoura.”</p>
             <div className="manifesto__cols">

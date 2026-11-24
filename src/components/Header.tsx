@@ -7,7 +7,7 @@ import { MAIN_NAV, UTILITY_NAV } from '@/content/site';
 import { LOCALES, useI18n } from '@/lib/i18n';
 import type { SearchDoc } from '@/lib/search-index';
 import { IconClose, IconLock, IconMenu, IconSearch } from './Icons';
-import { LogoPlate } from './Logo';
+import { LogoMark } from './Logo';
 import { SearchOverlay } from './Search';
 
 function LangSwitch({ light = true }: { light?: boolean }) {
@@ -57,7 +57,7 @@ export function Header({ searchIndex }: { searchIndex: SearchDoc[] }) {
       <header className="masthead">
         <div className="container masthead__inner">
           <Link href="/" className="masthead__home masthead__brand" aria-label="FÊNIX — Fragrances Holding, página inicial">
-            <LogoPlate />
+            <LogoMark label="FÊNIX — Fragrances Holding" priority />
           </Link>
           <div className="masthead__center hide-mobile">
             <span className="masthead__tagline">Europa · Brasil · América Latina</span>
@@ -101,7 +101,7 @@ export function Header({ searchIndex }: { searchIndex: SearchDoc[] }) {
         <div className="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label={t('menu')}>
           <div className="container">
             <div className="mobile-menu__top">
-              <Link href="/" className="masthead__home" style={{ height: 60 }} aria-label="Página inicial"><LogoPlate /></Link>
+              <Link href="/" className="masthead__home" style={{ height: 60 }} aria-label="Página inicial"><LogoMark /></Link>
               <button type="button" className="close-btn" onClick={() => setMenuOpen(false)} autoFocus>
                 {t('close')} <IconClose />
               </button>

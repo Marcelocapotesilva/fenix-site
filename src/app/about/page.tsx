@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { LogoMark } from '@/components/Logo';
 import { ArrowLink, Figure, PageHero, SectionHead } from '@/components/ui';
 import { PEOPLE, POSITIONING_LINE, PRINCIPLES } from '@/content/site';
 
@@ -11,6 +12,7 @@ export default function AboutPage() {
       <section className="section">
         <div className="container grid">
           <div className="col-8 col-start-3 stack-lg" style={{ textAlign: 'center' }}>
+            <LogoMark className="about__logo" />
             <p className="statement" style={{ marginInline: 'auto' }}>{POSITIONING_LINE}</p>
             <p className="measure muted" style={{ marginInline: 'auto' }}>Atendemos dois públicos que precisam um do outro: marcas internacionais que desejam crescer em novos territórios e parceiros locais — distribuidores, importadores, especialistas regulatórios e varejistas — que desejam marcas e relações mais estruturadas. Distribuição cria presença; coordenação cria operação.</p>
           </div>

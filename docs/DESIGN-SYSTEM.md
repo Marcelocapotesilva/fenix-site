@@ -56,7 +56,9 @@ Grid de 12 colunas, margens `clamp(22px, 4vw, 64px)`, seções `clamp(80px, 11vw
 | Esqueleto de carregamento / spinner | `.skeleton`, `.spinner` |
 
 ## Logo
-O PNG oficial é servido idêntico ao recebido. `LogoPlate` enquadra a arte ocultando só o campo preto vazio (símbolo, nome e assinatura sempre completos, escala uniforme). `LogoFull` mostra o quadrado inteiro. Na altura de um cabeçalho, a assinatura “FRAGRANCES HOLDING” não fica legível sem alterar a arte; por isso ela aparece em tamanho legível no hero da homepage, no rodapé e no Partner Access. Recomendação: o brand designer produzir uma versão horizontal oficial para cabeçalhos.
+- `public/brand/fenix-fragrances-holding-official.png` — arquivo oficial, mantido intacto como matriz.
+- `public/brand/fenix-fragrances-holding-transparent.png` — versão sem fundo aprovada pela FÊNIX em 24/11/2026. Gerada do arquivo oficial convertendo o campo preto em transparência (cor para alfa), sem redesenho, recorte do símbolo ou mudança de proporção. Usada em cabeçalho, manifesto, About, menu mobile, rodapé e Partner Access (`LogoMark`).
+- A versão transparente serve só para fundos escuros: o nome "FENIX" é branco. Para fundos claros, é preciso uma versão própria do designer da marca (idealmente em SVG).
 
 ## Movimento e acessibilidade
 Transições de 160–900ms só em opacidade, cor e transform; entrada suave das seções ao rolar (`Reveal.tsx`); `prefers-reduced-motion` zera durações. Foco visível bordô em tudo; link “pular para o conteúdo”; validação no blur com limpeza imediata do erro; foco no primeiro campo inválido; `aria-live` nos estados de envio; alvos de toque ≥ 44px nos controles principais.
