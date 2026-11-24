@@ -725,3 +725,11 @@ a.entry:hover .entry__title { color: var(--gold-soft); }
 .st-hero__title { font-size: clamp(28px, 4.4vw, 66px); }
 @media (max-width: 900px) { .st-hero__grid { grid-template-columns: minmax(0, 1fr); gap: 32px; } }
 @media (max-width: 600px) { .st-ledger b { font-size: 21px; } .st-ledger b span { display: block; margin: 2px 0 0; } }
+/* Manifesto — typographic, no logo plate */
+.manifesto { max-width: 1080px; margin-inline: auto; text-align: center; }
+.manifesto__quote { font-size: clamp(28px, 3.4vw, 50px); line-height: 1.25; margin-top: 28px; text-wrap: balance; }
+.manifesto__cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; margin-top: clamp(40px, 5vw, 64px); padding-top: 28px; border-top: 1px solid rgba(113,110,101,.25); text-align: left; }
+@media (max-width: 700px) { .manifesto__cols { grid-template-columns: 1fr; gap: 28px; } }
+.serial.text-gold { color: var(--gold); }
+.col-start-3 { grid-column-start: 3; }
+.mobile-menu { background: var(--black); }

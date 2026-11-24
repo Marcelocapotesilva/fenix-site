@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { LogoPlate } from '@/components/Logo';
 import { RequestForm } from '@/components/RequestForm';
 import { ArrowLink, SectionHead, StageBadge } from '@/components/ui';
 import { EXPERTISE } from '@/content/expertise';
@@ -76,22 +75,17 @@ export default function HomePage() {
       {/* 02 — Who We Work With (abre com o manifesto) */}
       <section className="section" aria-labelledby="s2">
         <div className="container reveal">
-          <div className="grid" style={{ alignItems: 'center' }}>
-            <div className="col-4">
-              <div className="seal"><LogoPlate fluid /></div>
-            </div>
-            <div className="col-7 col-start-6 stack-lg">
-              <p className="serial text-gold">Manifesto · Emotion · Logic · Perception</p>
-              <p className="st-quote">“A emoção desperta o desejo. <em>A lógica orienta o capital.</em> A percepção constrói autoridade duradoura.”</p>
-              <div className="grid" style={{ rowGap: 24 }}>
-                <div className="col-6 rule-top">
-                  <p className="serial text-gold">Presença não é operação</p>
-                  <p className="body-sm muted mt-3">{POSITIONING_LINE} Distribuição cria presença; coordenação cria operação.</p>
-                </div>
-                <div className="col-6 rule-top">
-                  <p className="serial text-gold">Princípios</p>
-                  <ul className="body-sm muted mt-3" style={{ display: 'grid', gap: 6 }}>{PRINCIPLES.map((p) => <li key={p.name}>{p.name}</li>)}</ul>
-                </div>
+          <div className="manifesto">
+            <p className="serial text-gold manifesto__label">Manifesto · Emotion · Logic · Perception</p>
+            <p className="st-quote manifesto__quote">“A emoção desperta o desejo. <em>A lógica orienta o capital.</em> A percepção constrói autoridade duradoura.”</p>
+            <div className="manifesto__cols">
+              <div>
+                <p className="serial text-gold">Presença não é operação</p>
+                <p className="body-sm muted mt-3">{POSITIONING_LINE} Distribuição cria presença; coordenação cria operação.</p>
+              </div>
+              <div>
+                <p className="serial text-gold">Princípios</p>
+                <ul className="body-sm muted mt-3" style={{ display: 'grid', gap: 6 }}>{PRINCIPLES.map((p) => <li key={p.name}>{p.name}</li>)}</ul>
               </div>
             </div>
           </div>
