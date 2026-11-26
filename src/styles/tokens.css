@@ -1,0 +1,98 @@
+/* ==========================================================================
+   FÊNIX — Design tokens · "Haute Parfumerie & Botanical Heritage" (Stitch)
+   Black canvas (the official logo sits on #000 and merges with the page),
+   ivory ink, brand gold for rules and accents, phoenix red only as a spark,
+   bordeaux for one deep band. Cormorant Garamond + Montserrat (brand guidelines).
+   ========================================================================== */
+
+:root {
+  /* Brand */
+  --canvas: #171612;      /* Obsidian Warm — page canvas (Stitch) */
+  --black: #000000;          /* canvas — identical to the logo's field */
+  --night: #201e19;          /* raised band */
+  --night-2: #29261f;        /* cards / inputs / hover */
+  --ivory: #f1eee7;          /* ink */
+  --ivory-2: #a7a196;        /* secondary text — 9.6:1 on black */
+  --ivory-3: #8a857a;        /* decorative / meta only */
+  --gold: #b8a17b;           /* brand gold */
+  --gold-soft: #d0bd99;
+  --champanhe: #b8a17b;
+  --bordo: #652d37;          /* deep band (brief palette) */
+  --bordo-deep: #3a1a20;
+  --mineral: #716e65;       /* hairlines, inactive borders */
+  --phoenix-red: #c8232b;    /* spark only */
+  --error: #e58b84;          /* error text readable on black */
+
+  /* Legacy aliases (kept so older markup keeps working) */
+  --carvao: var(--ivory);
+  --marfim: var(--black);
+  --banda: var(--night);
+  --banda-2: var(--night-2);
+  --logo-black: var(--black);
+  --ink-soft: var(--ivory-2);
+  --cinza-mineral: var(--ivory-3);
+
+  /* Semantic */
+  --color-bg: var(--canvas);
+  --color-text: var(--ivory);
+  --color-muted: var(--ivory-2);
+  --color-rule: rgba(184, 161, 123, 0.45);
+  --color-rule-soft: rgba(113, 110, 101, 0.32);
+  --color-accent: var(--gold);
+  --color-focus: var(--gold);
+  --color-error: var(--error);
+
+  /* Type */
+  --font-display: 'Bodoni Moda', 'Didot', 'Bodoni 72', Georgia, serif;
+  --font-ui: 'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --text-caption: 12px;
+  --text-label: 11px;
+  --text-body-sm: 14px;
+  --text-body: 15px;
+  --text-lead: clamp(19px, 1.55vw, 23px);
+  --text-h3: clamp(19px, 1.6vw, 23px);
+  --text-h2: clamp(30px, 3.2vw, 48px);
+  --text-h1: clamp(38px, 4.9vw, 74px);
+  --text-display: clamp(46px, 6.4vw, 96px);
+
+  --leading-tight: 1.04;
+  --leading-display: 1.02;
+  --leading-heading: 1.1;
+  --leading-body: 1.7;
+  --leading-ui: 1.55;
+
+  --tracking-display: -0.01em;
+  --tracking-label: 0.2em;
+  --tracking-nav: 0.2em;
+
+  /* Spacing */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 20px;
+  --space-6: 24px; --space-8: 32px; --space-10: 40px; --space-12: 48px; --space-16: 64px;
+  --space-20: 80px; --space-24: 96px; --space-32: 128px;
+
+  --gutter: clamp(22px, 4vw, 64px);
+  --section-y: clamp(80px, 11vw, 168px);
+  --page-max: 1440px;
+  --measure: 64ch;
+
+  --radius: 0px;
+  --rule: 1px solid var(--color-rule);
+  --rule-soft: 1px solid var(--color-rule-soft);
+
+  --dur-fast: 160ms;
+  --dur: 320ms;
+  --dur-slow: 900ms;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  --masthead-h: 88px;
+  --navbar-h: 52px;
+}
+
+@media (max-width: 900px) {
+  :root { --masthead-h: 72px; --navbar-h: 0px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-fast: 0ms; --dur: 0ms; --dur-slow: 0ms; }
+}

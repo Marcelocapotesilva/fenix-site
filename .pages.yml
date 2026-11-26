@@ -1,3 +1,5 @@
+# Pages CMS — preserved from the original site and extended (backwards compatible).
+# The Journal keeps living in content/posts.json; the Next.js build reads it.
 content:
   - name: posts
     label: Journal
@@ -9,12 +11,23 @@ content:
         type: object
         list: true
         fields:
-          - { name: date, label: Date, type: string }
+          - { name: date, label: "Date (DD/MM/YYYY)", type: string }
           - { name: title, label: Title, type: string }
           - { name: sub, label: Subtitle, type: string }
+          - { name: author, label: Author, type: string }
+          - name: category
+            label: Category
+            type: select
+            options:
+              values: ["World of Fragrance", "Business & Market Intelligence", "Retail & Luxury", "Origins & Ingredients", "Industry & Innovation", "Culture & Experiences", "Inside FÊNIX"]
+          - { name: tags, label: Tags, type: string, list: true }
           - { name: img, label: Cover image, type: image }
-          - { name: body, label: Body, type: text }
+          - { name: imgCaption, label: Cover caption / credit, type: string }
+          - { name: body, label: "Body (blank line between paragraphs)", type: text }
+          - { name: references, label: References, type: string, list: true }
+          - { name: seoTitle, label: SEO title, type: string }
+          - { name: seoDescription, label: SEO description, type: string }
 
 media:
-  input: images/uploads
+  input: public/images/uploads
   output: /images/uploads
